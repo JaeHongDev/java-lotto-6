@@ -9,4 +9,9 @@ public record PaymentAmount(int value) {
         DomainExceptionCode.PAYMENT_MUST_BE_DIVIDED.dynamicInvokeBy(() -> value % 1000 != 0);
     }
 
+
+    public int availablePurchaseCount() {
+        return value / 1000;
+    }
+
 }
