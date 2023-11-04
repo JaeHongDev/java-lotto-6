@@ -25,4 +25,11 @@ public final class InputView extends ConsoleWriter {
                 .map(this::convertStringToInteger)
                 .toList();
     }
+
+    public Integer readBonusLottoNumber() {
+        this.newLine();
+        this.println("보너스 번호를 입력해 주세요.");
+        return convertStringToInteger(Console.readLine());
+    }
 }
+
