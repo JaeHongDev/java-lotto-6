@@ -1,0 +1,26 @@
+package lotto.exception;
+
+import java.util.function.Supplier;
+
+public enum DomainExceptionCode {
+    PAYMENT_IS_GREATER_THAN_MIN_SIZE("구입금액은 1000원 부터 구매 가능합니다."),
+    PAYMENT_MUST_BE_DIVIDED("구입금액은 1000원으로 나누어 떨어져야 합니다.");
+
+
+    private final String message;
+
+    DomainExceptionCode(String message) {
+        this.message = message;
+    }
+
+
+    public void dynamicInvokeBy(Supplier<Boolean> supplier) {
+        if (supplier.get()) {
+            throw new DomainException(getMessage());
+        }
+    }
+
+    public String getMessage() {
+        return "[ERROR] " + message;
+    }
+}
