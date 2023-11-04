@@ -23,5 +23,6 @@ public final class OutputView extends ConsoleWriter {
     public void printPurchasedLotto(PurchasedLotto purchasedLotto) {
         newLine();
         println(purchasedLotto.toResult());
+        newLine();
     }
 }
