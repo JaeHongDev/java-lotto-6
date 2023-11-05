@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static lotto.exception.DomainExceptionCode.ANSWER_LOTTO_DUPLICATE_BONUS_LOTTO;
+
 import java.util.List;
+import java.util.Objects;
 
 public class AnswerLotto {
 
@@ -19,6 +22,15 @@ public class AnswerLotto {
     }
 
     public AnswerLotto registerBonusLotto(BonusLotto bonusLotto) {
+        ANSWER_LOTTO_DUPLICATE_BONUS_LOTTO.dynamicInvokeBy(() -> lotto.hasNumber(bonusLotto.value()));
         return new AnswerLotto(lotto, bonusLotto);
+    }
+
+    public WinningResult checkWinningResult(Lotto purchasedLotto) {
+        Objects.requireNonNull(bonusLotto);
+        return new WinningResult(
+                lotto.matchCount(purchasedLotto),
+                purchasedLotto.hasNumber(bonusLotto.value())
+        );
     }
 }

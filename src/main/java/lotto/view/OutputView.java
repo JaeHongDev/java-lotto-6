@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.state.LottoMatchResultState;
 import lotto.state.PurchaseLottoResultState;
 
 public final class OutputView extends ConsoleWriter {
@@ -21,5 +22,15 @@ public final class OutputView extends ConsoleWriter {
                 6개 일치 (2,000,000,000원) - 0개
                 총 수익률은 62.5%입니다.
                 """);
+    }
+
+    public void printStatics(LottoMatchResultState lottoMatchResultState) {
+        this.newLine();
+        this.println("""
+                당첨 통계
+                ---
+                """);
+        this.println(lottoMatchResultState.toResult());
+        this.println(String.format("총 수익률은 %s%%입니다.", lottoMatchResultState.toROI()));
     }
 }

@@ -1,9 +1,9 @@
-package lotto;
+package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +24,23 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    void 서로_다른_로또_번호를_비교해서_일치하는_개수를_가져올_수있습니다() {
+        var thisLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        var thatLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(thisLotto.matchCount(thatLotto)).isEqualTo(6);
+    }
+
+    @Test
+    void 하나만_일치하지_않는_경우() {
+        var thisLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        var thatLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        assertThat(thisLotto.matchCount(thatLotto)).isEqualTo(5);
+    }
+
+    @Test
+    void enum_t() {
+    }
 }
