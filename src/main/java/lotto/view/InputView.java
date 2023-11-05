@@ -33,4 +33,11 @@ public final class InputView extends ConsoleWriter {
                 .map(stringIntegerFunction -> stringIntegerFunction.apply(message))
                 .toList();
     }
+
+    public int readBonusNumber() {
+        this.newLine();
+        this.println("보너스 번호를 입력해 주세요.");
+        return convertStringToInteger(Console.readLine()).apply("보너스 번호는 정수여야 합니다.");
+
+    }
 }
